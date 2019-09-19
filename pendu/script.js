@@ -72,6 +72,7 @@ const reset = () => {
   counterTry = nbTry;
   emptyTab = [];
   usedLetters = [];
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   // generer un nouveau mot
   initWord();
