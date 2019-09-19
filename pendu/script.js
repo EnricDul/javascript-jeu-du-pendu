@@ -1,18 +1,58 @@
 let words = [];
 
-let letter, tab, canvas, ctx;
+let letter, tab, canvas, ctx, erros;
 let usedLetters = [];
 let emptyTab = [];
-
-// Essaies
-const nbTry = 6;
-let counterTry = nbTry;
 
 // HTML TAGS
 const inputLetter = document.getElementById("inputLetter");
 const tagEmptyTab = document.querySelector(".emptyTab");
 const tagUsedLetters = document.querySelector(".usedLetters");
 const tagCountTry = document.querySelector(".countTry");
+
+// CANVAS ERRORS
+const errors = [
+  {
+    style: "black",
+    type: "ctx.fillRect(10, 10, 10, 220)"
+  },
+  {
+    style: "black",
+    type: "ctx.fillRect(10, 10, 100, 10)"
+  },
+  {
+    style: "brown",
+    type: "ctx.fillRect(90, 10, 10, 30)"
+  },
+  {
+    style: "pink",
+    type: "ctx.fillRect(80, 30, 30, 30)"
+  },
+  {
+    style: "blue",
+    type: "ctx.fillRect(90, 60, 10, 70)"
+  },
+  {
+    style: "blue",
+    type: "ctx.fillRect(60, 70, 30, 10)"
+  },
+  {
+    style: "blue",
+    type: "ctx.fillRect(100, 70, 30, 10)"
+  },
+  {
+    style: "purple",
+    type: "ctx.fillRect(80, 110, 10, 50)"
+  },
+  {
+    style: "purple",
+    type: "ctx.fillRect(100, 110, 10, 50)"
+  }
+];
+
+// Essaies
+const nbTry = errors.length;
+let counterTry = nbTry;
 
 // On stock les lettres utiliser par l'utilisateur
 const stockVal = letter => {
@@ -74,7 +114,16 @@ const guessLetter = () => {
       }
     }
 
-    if (!verify) counterTry--;
+    if (!verify) {
+      counterTry--;
+
+      // CANVAS ADD
+      const element = errors[nbTry - counterTry - 1];
+      if (element) {
+        ctx.fillStyle = element.style;
+        eval(element.type);
+      }
+    }
 
     updateTag();
 
@@ -110,10 +159,6 @@ const initWord = () => {
 const initCanvas = () => {
   canvas = document.getElementById("canvas");
   ctx = canvas.getContext("2d");
-  console.log(canvas);
-  console.log(ctx);
-
-  ctx.fillStyle = "green";
 };
 
 /**

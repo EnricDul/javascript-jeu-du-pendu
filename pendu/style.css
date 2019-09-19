@@ -1,0 +1,19 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.form {
+  margin-bottom: 20px;
+}
+
+#canvas {
+  background-color: #f3f3f3;
+}
